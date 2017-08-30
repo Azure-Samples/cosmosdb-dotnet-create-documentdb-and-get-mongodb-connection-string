@@ -4,12 +4,12 @@ platforms: .Net
 author: alvadb
 ---
 
-# Getting Started with Cosmosdb - Create Document D B With Kind Mongo D B - in .Net #
+# Getting Started with Cosmosdb - Create Cosmos D B With Kind Mongo D B - in .Net #
 
-          Azure DocumentDB sample -
-           - Create a DocumentDB configured with MongoDB kind.
+          Azure CosmosDB sample -
+           - Create a CosmosDB configured with MongoDB kind.
            - Get the mongodb connection string
-           - Delete the DocumentDB.
+           - Delete the CosmosDB.
 
 
 ## Running this Sample ##
