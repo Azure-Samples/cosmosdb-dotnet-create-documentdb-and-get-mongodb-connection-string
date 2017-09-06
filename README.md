@@ -4,7 +4,7 @@ platforms: .Net
 author: alvadb
 ---
 
-# Getting Started with Cosmosdb - Create Cosmos D B With Kind Mongo D B - in .Net #
+# Getting Started with Cosmosdb - Create Cosmos DB With Kind Mongo DB - in .Net #
 
           Azure CosmosDB sample -
            - Create a CosmosDB configured with MongoDB kind.
