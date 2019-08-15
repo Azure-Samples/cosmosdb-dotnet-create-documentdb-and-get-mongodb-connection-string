@@ -4,17 +4,17 @@ languages:
 - csharp
 products:
 - azure
-services: Cosmos-DB
-platforms: dotnet
-author: yaohaizh
+extensions:
+- services: Cosmos-DB
+- platforms: dotnet
 ---
 
 # Create a DocumentDB and get MongoDB connection string using C# #
 
-          Azure CosmosDB sample -
-           - Create a CosmosDB configured with MongoDB kind.
-           - Get the mongodb connection string
-           - Delete the CosmosDB.
+ Azure CosmosDB sample -
+  - Create a CosmosDB configured with MongoDB kind.
+  - Get the mongodb connection string
+  - Delete the CosmosDB.
 
 
 ## Running this Sample ##
