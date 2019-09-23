@@ -7,6 +7,7 @@ products:
 extensions:
 - services: Cosmos-DB
 - platforms: dotnet
+description: "Azure CosmosDB sample."
 ---
 
 # Create a DocumentDB and get MongoDB connection string using C# #
