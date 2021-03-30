@@ -20,13 +20,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.18" />
     <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.24.0" />
-    <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.1" />
     <PackageReference Include="CoreFTP" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="0.0.2-preview" />
     <PackageReference Include="SSH.NET" Version="2016.0.0" />
     <PackageReference Include="Docker.DotNet" Version="2.124.3" />
     <PackageReference Include="Docker.DotNet.X509" Version="2.124.3" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.1.4" />
     <PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
   </ItemGroup>
 
@@ -58,7 +55,6 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Diagnostics.Process" />
     <Reference Include="System.Reflection" />
-    <PackageReference Include="Microsoft.Azure.DocumentDB" Version="1.14.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Asset\documentdb-dotnet-todo-app\src\App_Start\BundleConfig.cs" />
