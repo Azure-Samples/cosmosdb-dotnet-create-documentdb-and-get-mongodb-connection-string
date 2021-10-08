@@ -15,7 +15,6 @@ namespace todo
     using Microsoft.Azure.Documents.Client;
     using Microsoft.Azure.Documents.Linq;
     using System.Collections.ObjectModel;
-    using Microsoft.Azure.KeyVault;
     using System.Threading;
     using Azure.Identity;
     using Azure.Security.KeyVault.Secrets;
@@ -85,9 +84,9 @@ namespace todo
             var credential = new DefaultAzureCredential();
             var vaultBaseUrl = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_URI");
             SecretClient secretClient = new SecretClient(new Uri(vaultBaseUrl),credential);
-            var endpoint = secretClient.GetSecretAsync("azure-documentdb-uri").GetAwaiter().GetResult().Value;
-            var authKey = secretClient.GetSecretAsync("azure-documentdb-key").GetAwaiter().GetResult().Value;
-            client = new DocumentClient(new Uri(endpoint.Value), authKey.Value);
+            var endpoint = secretClient.GetSecret("azure-documentdb-uri").Value.Value;
+            var authKey = secretClient.GetSecret("azure-documentdb-key").Value.Value;
+            client = new DocumentClient(new Uri(endpoint), authKey);
             CreateDatabaseIfNotExistsAsync().Wait();
             CreateCollectionIfNotExistsAsync().Wait();
         }
