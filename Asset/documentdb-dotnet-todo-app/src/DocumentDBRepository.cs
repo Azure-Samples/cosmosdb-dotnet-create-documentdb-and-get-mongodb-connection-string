@@ -7,17 +7,17 @@ namespace todo
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Configuration;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading;
     using System.Threading.Tasks;
+    using Azure.Identity;
+    using Azure.Security.KeyVault.Secrets;
     using Microsoft.Azure.Documents;
     using Microsoft.Azure.Documents.Client;
     using Microsoft.Azure.Documents.Linq;
-    using System.Collections.ObjectModel;
-    using System.Threading;
-    using Azure.Identity;
-    using Azure.Security.KeyVault.Secrets;
 
     public static class DocumentDBRepository<T> where T : class
     {
