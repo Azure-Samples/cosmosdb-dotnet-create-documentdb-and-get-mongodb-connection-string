@@ -7,17 +7,17 @@ namespace todo
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Configuration;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading;
     using System.Threading.Tasks;
+    using Azure.Identity;
+    using Azure.Security.KeyVault.Secrets;
     using Microsoft.Azure.Documents;
     using Microsoft.Azure.Documents.Client;
     using Microsoft.Azure.Documents.Linq;
-    using System.Collections.ObjectModel;
-    using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
-    using Microsoft.Azure.KeyVault;
-    using System.Threading;
 
     public static class DocumentDBRepository<T> where T : class
     {
@@ -81,14 +81,11 @@ namespace todo
 
         public static void Initialize()
         {
-            var factory = new MSITokenProviderFactory(new MSILoginInformation(MSIResourceType.AppService));
-            KeyVaultClient kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(async (authority, resource, scope) =>
-            {
-                return (await factory.Create(resource).GetAuthenticationHeaderAsync(default(CancellationToken))).Parameter;
-            }));
+            var credential = new DefaultAzureCredential();
             var vaultBaseUrl = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_URI");
-            var endpoint = kvClient.GetSecretAsync(vaultBaseUrl, "azure-documentdb-uri").GetAwaiter().GetResult().Value;
-            var authKey = kvClient.GetSecretAsync(vaultBaseUrl, "azure-documentdb-key").GetAwaiter().GetResult().Value;
+            SecretClient secretClient = new SecretClient(new Uri(vaultBaseUrl),credential);
+            var endpoint = secretClient.GetSecret("azure-documentdb-uri").Value.Value;
+            var authKey = secretClient.GetSecret("azure-documentdb-key").Value.Value;
             client = new DocumentClient(new Uri(endpoint), authKey);
             CreateDatabaseIfNotExistsAsync().Wait();
             CreateCollectionIfNotExistsAsync().Wait();
